@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: #ff4d6d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease;
+        }
+        
+        .heart {
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #555;
+            margin-bottom: 30px;
+            animation: slideIn 2s ease;
+        }
+        
+        .message-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeUp 2s ease;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .photo-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            height: 280px;
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .photo-container:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-container:hover .photo {
+            transform: scale(1.1);
+        }
+        
+        .upload-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.6);
+        }
+        
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .heart-fall {
+            position: absolute;
+            top: -50px;
+            color: #ff4d6d;
+            opacity: 0.7;
+            animation: fall linear forwards;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(90deg);
+                opacity: 0;
+            }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4d6d;
+            opacity: 0.7;
+            animation: confetti-fall linear forwards;
+            z-index: 100;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Happy Birthday <span class="heart">♥</span></h1>
+            <p class="subtitle">To the most amazing girl in the world</p>
+            <div class="floating">
+                <i class="fas fa-birthday-cake" style="font-size: 3rem; color: #ff4d6d;"></i>
+            </div>
+        </header>
+        
+        <section class="message-section">
+            <div class="message">
+                <p>My Dearest,</p>
+                <p>On this special day, I want you to know how incredibly blessed I am to have you in my life. Your smile lights up my world, your laughter is my favorite melody, and your love is the greatest gift I've ever received.</p>
+                <p>May your birthday be as beautiful, wonderful, and amazing as you are. You deserve all the happiness in the world!</p>
+                <p>With all my love,</p>
+                <p>Your admirer</p>
+            </div>
+        </section>
+        
+        <h2 style="text-align: center; margin: 40px 0; font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ff4d6d;">Our Beautiful Memories <span class="heart">♥</span></h2>
+        
+        <div class="gallery" id="photoGallery">
+            <!-- Default placeholder images -->
+            <div class="photo-container">
+                <img src="IMG-20240927-WA0025.jpg" alt="Memory 1" class="photo">
+            </div>
+            <div class="photo-container">
+                <img src="IMG-20240927-WA0026.jpg" alt="Memory 2" class="photo">
+            </div>
+            <div class="photo-container">
+                <img src="IMG-20241013-WA0001 1.jpg" class="photo">
+            </div>
+            <div class="photo-container">
+                <img src="IMG-20241031-WA0039.jpg" alt="Memory 4" class="photo">
+            </div>
+        </div>
+        
+        <div class="upload-section">
+            <h3>Add More Photos to Our Gallery</h3>
+            <p>Select images to upload and create our memory wall</p>
+            <input type="file" id="photoUpload" accept="image/*" multiple style="display: none;">
+            <button class="btn" onclick="document.getElementById('photoUpload').click()">
+                <i class="fas fa-cloud-upload-alt"></i> Choose Photos
+            </button>
+        </div>
+        
+        <footer>
+            <p>Made with <span class="heart">♥</span> for your special day | © 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to handle photo uploads
+        document.getElementById('photoUpload').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const gallery = document.getElementById('photoGallery');
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        // Create new photo container
+                        const div = document.createElement('div');
+                        div.className = 'photo-container';
+                        
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'photo';
+                        img.alt = "Our memory";
+                        
+                        div.appendChild(img);
+                        gallery.appendChild(div);
+                        
+                        // Create confetti effect
+                        createConfetti();
+                    }
+                    
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+        
+        // Create falling hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.innerHTML = '♥';
+            heart.className = 'heart-fall';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            
+            heartsContainer.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const container = document.body;
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 65%);
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Create initial hearts
+        setInterval(createHearts, 300);
+        
+        // Create initial confetti
+        setTimeout(createConfetti, 1000);
+        setTimeout(createConfetti, 1500);
+        setTimeout(createConfetti, 2000);
+    </script>
+</body>
+</html>
